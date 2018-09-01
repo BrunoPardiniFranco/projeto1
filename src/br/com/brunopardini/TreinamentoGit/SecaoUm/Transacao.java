@@ -8,20 +8,19 @@ public class Transacao {
 	private Conta conta;
 	private CaixaEletronico caixaEletronico;
 	private String operacao;
-	private double valor;
-	private double saldoAtual;
+	private double valorTransacao;
 	private Calendar dataTransacao;
+	private boolean transacaoAceita;
 	
-	public Transacao(double saldoAtual) {
-		this.saldoAtual = saldoAtual;
+	public Transacao(Conta conta) {
+		this.conta = conta;
 	}
 	
-	public Transacao historicoSaque(Conta conta, double valor) {
+	public void historicoSaque(boolean transacaoAceita, double valor) {
 		operacao = "Saque";
-		this.valor = valor;
-		this.conta = conta;
+		this.valorTransacao = valor;
+		this.transacaoAceita = transacaoAceita;
 		dataTransacao = construirDataTransacao();
-		return this;
 	}
 	
 	private Calendar construirDataTransacao() {
@@ -31,18 +30,14 @@ public class Transacao {
 		return dataTransacao;
 	}
 
-	public Conta getConta() {
-		return conta;
-	}
-
 
 	public String getOperacao() {
 		return operacao;
 	}
 
 
-	public double getValor() {
-		return valor;
+	public double getValorTransacao() {
+		return valorTransacao;
 	}
 
 
