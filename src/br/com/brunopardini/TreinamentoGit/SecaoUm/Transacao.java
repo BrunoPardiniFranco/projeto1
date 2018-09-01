@@ -11,15 +11,15 @@ public class Transacao {
 	private double valorTransacao;
 	private Calendar dataTransacao;
 	private boolean transacaoAceita;
+	public double saldoDaConta;
 	
 	public Transacao(Conta conta) {
 		this.conta = conta;
 	}
 	
-	public void historicoSaque(boolean transacaoAceita, double valor) {
-		operacao = "Saque";
+	public void historicoTransacao(double valor) {
 		this.valorTransacao = valor;
-		this.transacaoAceita = transacaoAceita;
+		this.saldoDaConta = conta.getSaldo();
 		dataTransacao = construirDataTransacao();
 	}
 	
@@ -29,12 +29,18 @@ public class Transacao {
 		dataTransacao.setTime(data);
 		return dataTransacao;
 	}
-
+	
+	public void setOperacao(String operacao) {
+		this.operacao = operacao;
+	}
+	
+	public void setTransacaoAceita(boolean transacaoAceita) {
+		this.transacaoAceita = transacaoAceita;
+	}
 
 	public String getOperacao() {
 		return operacao;
 	}
-
 
 	public double getValorTransacao() {
 		return valorTransacao;
@@ -44,5 +50,8 @@ public class Transacao {
 	public Calendar getDataTransacao() {
 		return dataTransacao;
 	}
-
+	
+	public double getSaldoDaConta() {
+		return saldoDaConta;
+	}
 }
